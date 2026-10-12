@@ -1,0 +1,12 @@
+[Unit]
+Description=Unlock full GPU boost budget (CTGP=1 via EC0.RCAP) for Colorful/Tongfang laptops
+After=multi-user.target
+Wants=nvidia-powerd.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/apply-boost.sh
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,9 @@
+# 本地测试产物
+*.log
+*.out
+
+# ACPI 提取物(体积大且含机器特定数据, 不入库)
+acpidump.out
+dsdt/
+bin/
+tables/
