@@ -47,10 +47,24 @@ All of the following must be true:
 ## Usage
 
 Requires the `acpi_call` kernel module (`sudo apt install acpi-call-dkms` or
-equivalent), plus NVIDIA driver + nvidia-powerd already working.
+equivalent; kernel headers `linux-headers-$(uname -r)` needed for the DKMS
+build), plus NVIDIA driver + nvidia-powerd already working.
+
+> **Deepin / UOS users**: these distros' NVIDIA driver packages ship
+> `nvidia-dbus.conf` but never install it, leaving nvidia-powerd dead
+> (the first hurdle before this unlock). Fix it manually:
+>
+> ```bash
+> sudo cp /usr/share/doc/NVIDIA_GLX-1.0/nvidia-dbus.conf /etc/dbus-1/system.d/
+> sudo systemctl restart nvidia-powerd
+> ```
+
+From scratch on a fresh install:
 
 ```bash
-# One-shot unlock (valid until reboot)
+sudo apt install acpi-call-dkms
+git clone https://github.com/ddacxhs/colorful-gpu-unlock.git
+cd colorful-gpu-unlock
 sudo scripts/apply-boost.sh
 
 # Verify: Current Power Limit should now equal Max Power Limit

@@ -43,11 +43,24 @@
 
 ## 使用
 
-依赖：`acpi_call` 内核模块（`sudo apt install acpi-call-dkms` 或等效包），
-NVIDIA 驱动 + nvidia-powerd 已装好。
+依赖：`acpi_call` 内核模块（`sudo apt install acpi-call-dkms` 或等效包，
+编译需要 `linux-headers-$(uname -r)`），NVIDIA 驱动 + nvidia-powerd 已装好。
+
+> **Deepin / UOS 用户注意**：这些发行版的 NVIDIA 驱动包不安装
+> `nvidia-dbus.conf`，导致 nvidia-powerd 空转（这是解锁前的第一道坎）。
+> 手动补上并重启服务：
+>
+> ```bash
+> sudo cp /usr/share/doc/NVIDIA_GLX-1.0/nvidia-dbus.conf /etc/dbus-1/system.d/
+> sudo systemctl restart nvidia-powerd
+> ```
+
+重装系统后从零开始：
 
 ```bash
-# 一次性解锁（当前开机周期内生效）
+sudo apt install acpi-call-dkms
+git clone https://github.com/ddacxhs/colorful-gpu-unlock.git
+cd colorful-gpu-unlock
 sudo scripts/apply-boost.sh
 
 # 验证: 应看到 Current Power Limit = Max Power Limit
