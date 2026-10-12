@@ -1,5 +1,7 @@
 # colorful-gpu-unlock
 
+[English](README.en.md) | 简体中文
+
 解锁七彩虹（Colorful）隐星系列游戏本在 Linux 下的满血 GPU 功耗。
 
 在七彩虹隐星 G16 Pro（i9-14900HX + RTX 5090 Laptop 24GB）上开发验证，
